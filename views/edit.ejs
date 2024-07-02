@@ -1,0 +1,139 @@
+<%- include("partials/header.ejs") %>
+
+<style>
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom, #020024, #090979, #00d4ff);
+    color: #fff;
+    line-height: 1.6;
+    padding-top: 60px;
+    background-attachment: fixed;
+}
+
+/* Header */
+header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-floating {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-floating input,
+.form-floating textarea {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s;
+}
+
+.form-floating input:focus,
+.form-floating textarea:focus {
+    border-color: #00d4ff;
+    outline: none;
+}
+
+.form-floating label {
+    color: rgba(255, 255, 255, 0.7) !important;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label,
+.form-floating textarea:focus + label,
+.form-floating textarea:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 15px;
+    font-size: 12px;
+    color: #00d4ff !important;
+}
+
+.btn-dark {
+    background-color: #00d4ff !important;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-dark:hover {
+    background-color: #1cc88a !important;
+    transform: scale(1.05);
+}
+
+/* Additional styles for night sky */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(to bottom, #020024, #090979, #00d4ff);
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+</style>
+
+<div class="container" style="margin-top: 100px">
+    <form action="/updatepost/<%= postId %>" method="POST">
+        <h1 class="h3 mb-3 fw-normal">Update your post</h1>
+        <div class="form-floating">
+            <input type="text" name="topicname" value="<%= post.topicname %>" class="form-control" id="blog-topic" placeholder="e.g - World, Business, Health">
+            <label for="floatingInput">Enter your feild</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="subject" value="<%= post.subject %>" class="form-control" id="blog-subject" placeholder="e.g - World population and..">
+            <label for="floatingInput">Enter your Topic name</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" name="content" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"><%= post.content %></textarea>
+            <label for="floatingTextarea2">write Ur THoughts</label>
+        </div>
+        <button class="btn btn-dark w-100 py-2" type="submit">Update your post</button>
+    </form>
+</div>    
+
+
